@@ -5,26 +5,26 @@ Primarily nvim.
 
 ## Project Layout
 .
-├── .bashrc
-├── .zshrc // config of terminal
-├── copy.sh // copy contents of desired dotfiles to this repo
-├── .config
-│   └── nvim
-│       ├── init.lua // require all modules
-│       ├── lazy-lock.json
-│       └── lua
-│           └── core
-│               ├── keybindings.lua // basic vim config
-│               ├── plugin_config // package configs
-│               │   ├── completions.lua
-│               │   ├── gruvbox.lua
-│               │   ├── init.lua
-│               │   ├── lsp.lua
-│               │   ├── lualine.lua
-│               │   ├── snippy.lua
-│               │   ├── telescope.lua
-│               │   └── treesitter.lua
-│               └── plugins.lua // require and install packages
+├── .bashrc<br>
+├── .zshrc // config of terminal<br>
+├── copy.sh // copy contents of desired dotfiles to this repo<br>
+├── .config<br>
+│   └── nvim<br>
+│       ├── init.lua // require all modules<br>
+│       ├── lazy-lock.json<br>
+│       └── lua<br>
+│           └── core<br>
+│               ├── keybindings.lua // basic vim config<br>
+│               ├── plugin_config // package configs<br>
+│               │   ├── completions.lua<br>
+│               │   ├── gruvbox.lua<br>
+│               │   ├── init.lua<br>
+│               │   ├── lsp.lua<br>
+│               │   ├── lualine.lua<br>
+│               │   ├── snippy.lua<br>
+│               │   ├── telescope.lua<br>
+│               │   └── treesitter.lua<br>
+│               └── plugins.lua // require and install packages<br>
 
 ## Neovim Dependencies
 
