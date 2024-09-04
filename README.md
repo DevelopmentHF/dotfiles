@@ -4,6 +4,8 @@ Contains my custom dotfiles.
 Primarily nvim.
 
 ## Project Layout
+
+```bash
 .
 ├── .bashrc<br>
 ├── .zshrc // config of terminal<br>
@@ -25,6 +27,7 @@ Primarily nvim.
 │               │   ├── telescope.lua<br>
 │               │   └── treesitter.lua<br>
 │               └── plugins.lua // require and install packages<br>
+```
 
 ## Neovim Dependencies
 
