@@ -25,17 +25,31 @@ require("lazy").setup({
 	},
 	{
     	'nvim-telescope/telescope.nvim', tag = '0.1.6',
-		-- or                              , branch = '0.1.x',
 		dependencies = { 'nvim-lua/plenary.nvim' }
     },
 	{
 		"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"
 	},
 	{
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-    	"neovim/nvim-lspconfig",
+		"mason-org/mason.nvim",
+		opts = {
+		ui = {
+			icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+			},
+		},
+		},
 	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		dependencies = { "mason-org/mason.nvim" },
+		opts = {
+		ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "pylsp" },
+		},
+	},
+  	{ "neovim/nvim-lspconfig" },
 	{
 		"hrsh7th/nvim-cmp"
 	},
@@ -49,8 +63,9 @@ require("lazy").setup({
 		'windwp/nvim-autopairs',
 		event = "InsertEnter",
 		config = true
-		-- use opts = {} for passing setup options
-		-- this is equalent to setup({}) function
 	},
 
+	require("core.plugin_config.vimtex"),
+
 }, opts)
+

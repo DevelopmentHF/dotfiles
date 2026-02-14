@@ -1,41 +1,46 @@
-require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
+-- Keymaps per-buffer, whenever an LSP attaches
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
+    vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { buffer = bufnr })
+    vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, { buffer = bufnr })
+  end,
 })
-require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "pylsp"},
-}
 
--- mason lsp key bindings
-local on_attach = function(_, _)
-	vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, {})
-	vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, {})
-end
+-- Capabilities for nvim-cmp
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- link autocomplete engine to our lsp 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- Server configs (new API)
+vim.lsp.config("clangd", {
+  capabilities = capabilities,
+})
 
-require("lspconfig").lua_ls.setup {
-	Lua = {
+vim.lsp.config("rust_analyzer", {
+  capabilities = capabilities,
+})
+
+vim.lsp.config("pylsp", {
+  capabilities = capabilities,
+})
+
+vim.lsp.config("glsl_analyzer", {
+  capabilities = capabilities,
+})
+
+vim.lsp.config("lua_ls", {
+  capabilities = capabilities,
+  settings = {
+    Lua = {
       workspace = {
         checkThirdParty = false,
-        telemetry = { enable = false },
         library = {
-          "${3rd}/love2d/library"
-        }
-      }
-    }
-}
-require("lspconfig").rust_analyzer.setup {}
-require("lspconfig").clangd.setup {
-	capabilities = capabilities,
-	on_attach = on_attach
-}
-require("lspconfig").pylsp.setup {}
+          "${3rd}/love2d/library",
+        },
+      },
+      telemetry = { enable = false },
+    },
+  },
+})
 
-
+-- Enable servers (starts them / autostarts)
+vim.lsp.enable({ "clangd", "rust_analyzer", "pylsp", "lua_ls", "glsl_analyzer"})
